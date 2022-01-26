@@ -1,11 +1,9 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseModel } from "./baseModel";
 import { Candidato } from "./CandidatoModel";
 
 @Entity()
-export class Habilidade {
-	@PrimaryGeneratedColumn("uuid")
-	id: string;
-    
+export class Habilidade extends BaseModel {
     @Column()
     descricao: string;
 

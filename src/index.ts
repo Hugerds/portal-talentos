@@ -7,6 +7,7 @@ import { Habilidade } from "./app/models/HabilidadeModel";
 import { Candidato } from "./app/models/CandidatoModel";
 import { Curso } from "./app/models/CursoModel";
 import { Instituicao } from "./app/models/InstituicaoModel";
+import { candidadoRouter } from "./app/routes/CandidadoRoutes";
 
 const port = process.env.PORT || 3001;
 Application();
@@ -17,6 +18,7 @@ async function Application() {
 
     const app = express();
 	app.use(express.json());
+    app.use(candidadoRouter);
 	app.listen(port, function(){
 		console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 	});

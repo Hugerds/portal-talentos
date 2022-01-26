@@ -1,13 +1,11 @@
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseModel } from "./baseModel";
 import { Endereco } from "./EnderecoModel";
 import { Formacao } from "./FormacaoModel";
 import { Habilidade } from "./HabilidadeModel";
 
 @Entity()
-export class Candidato {
-	@PrimaryGeneratedColumn("uuid")
-	id: string;
-    
+export class Candidato extends BaseModel {
     @Column()
     code: number;
     
@@ -31,4 +29,12 @@ export class Candidato {
     
     @ManyToOne(() => Formacao, formacao => formacao.candidato, {cascade: true})
     formacao: Formacao;
+
+    @Column({type: 'date'})
+    @CreateDateColumn()
+    create_date: Date;
+    
+    @Column({type: 'date'})
+    @UpdateDateColumn()
+    update_date: Date;
 }

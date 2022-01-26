@@ -1,13 +1,11 @@
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseModel } from "./baseModel";
 import { Candidato } from "./CandidatoModel";
 import { Curso } from "./CursoModel";
 import { Instituicao } from "./InstituicaoModel";
 
 @Entity()
-export class Formacao {
-	@PrimaryGeneratedColumn("uuid")
-	id: string;
-
+export class Formacao extends BaseModel {
     @Column({type: "date"})
     conclusao: Date;
     
