@@ -92,7 +92,3 @@ export class CandidatoController {
 		);
 	}
 }
-
-interface ICandidato {
-	name: string,
-}
