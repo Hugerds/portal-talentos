@@ -24,8 +24,9 @@ export class Candidato extends BaseModel {
     @ManyToOne(() => Endereco, endereco => endereco.candidato)
     endereco: Endereco;
 
-    @ManyToOne(() => Habilidade, habilidade => habilidade.candidato)
-    habilidade: Habilidade;
+    @ManyToMany(() => Habilidade)
+    @JoinTable()
+    habilidades: Habilidade[];
     
     @ManyToOne(() => Formacao, formacao => formacao.candidato, {cascade: true})
     formacao: Formacao;

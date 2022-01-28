@@ -3,28 +3,37 @@ import { Candidato } from "../models/CandidatoModel";
 import { CandidatoService } from "../services/CandidatoService";
 
 export class CandidatoController {
-    async getCandidato(request: Request, response: Response): Promise<void> {
-		// const candidatoService = new CandidatoService();
-		// const newCandidato : Partial<Candidato> = {
-		// 	id: request.params.idCandidato as string,
-		// };
+    // async getCandidato(request: Request, response: Response): Promise<void> {
+	// 	// const candidatoService = new CandidatoService();
+	// 	// const newCandidato : Partial<Candidato> = {
+	// 	// 	id: request.params.idCandidato as string,
+	// 	// };
         
-		// const candidato = await candidatoService.findPlayerById(newPlayer);
+	// 	// const candidato = await candidatoService.findPlayerById(newPlayer);
 
     
 
-		response.json( "Oi"
-			// player,
+	// 	response.json( "Oi"
+	// 		// player,
+	// 	);
+	// }
+
+    async getCandidatos(request: Request, response: Response): Promise<void> {
+		const candidatoService = new CandidatoService();
+        
+		const res = await candidatoService.findAllCandidates();
+		response.json(
+			res,
 		);
 	}
 
-    async getCandidatos(request: Request, response: Response): Promise<void> {
-		// const playerService = new PlayerService();
+	async getCandidatesList(request: Request, response: Response): Promise<void> {
+		const candidatoService = new CandidatoService();
         
-		// const res = await playerService.findAllPlayers();
-		// response.json(
-		// 	res,
-		// );
+		const res = await candidatoService.findCandidatesList();
+		response.json(
+			res,
+		);
 	}
 
     async inactiveCandidatoById(request: Request, response: Response) : Promise<void> {
@@ -74,7 +83,7 @@ export class CandidatoController {
             email: request.body.email,
             telefone: request.body.telefone,
             endereco: request.body.endereco,
-            habilidade: request.body.habilidade,
+            habilidades: request.body.habilidades,
             formacao: request.body.formacao,
 		};
 		const res = await candidatoService.createCandidate(novoCandidato);
@@ -82,4 +91,8 @@ export class CandidatoController {
 			res
 		);
 	}
+}
+
+interface ICandidato {
+	name: string,
 }

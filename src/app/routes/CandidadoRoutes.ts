@@ -7,11 +7,11 @@ const path = "/candidato";
 const candidadoController = new CandidatoController();
 
 const routeConfig: RouterFactoryDTO[] = [
-	{
-		method: "get",
-		path: `${path}/:idCandidato`,
-		controller: candidadoController.getCandidato
-	},
+	// {
+	// 	method: "get",
+	// 	path: `${path}/:idCandidato`,
+	// 	controller: candidadoController.getCandidato
+	// },
 	{
 		method: "post",
 		path: `${path}`,
@@ -36,6 +36,11 @@ const routeConfig: RouterFactoryDTO[] = [
 		method: "get",
 		path: `${path}`,
 		controller: candidadoController.getCandidatos
+	},
+	{
+		method: "get",
+		path: `${path}/getList`,
+		controller: candidadoController.getCandidatesList
 	}
 ];
 

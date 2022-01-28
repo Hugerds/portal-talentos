@@ -11,6 +11,6 @@ export class Curso extends BaseModel {
     @Column()
     descricao: string;
 
-    @OneToMany(() => Formacao, formacao => formacao.cursos)
+    @OneToMany(() => Formacao, formacao => formacao.curso)
     formacoes: Formacao[];
 }

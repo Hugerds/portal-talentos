@@ -11,11 +11,11 @@ export class Formacao extends BaseModel {
     
     @ManyToOne(() => Curso, curso => curso.formacoes)
     @JoinTable()
-    cursos: Curso;
+    curso: Curso;
 
     @ManyToOne(() => Instituicao, instituicao => instituicao.formacoes)
     @JoinTable()
-    instituicoes: Instituicao;
+    instituicao: Instituicao;
 
     @OneToMany(() => Candidato, candidato => candidato.id)
     candidato: Candidato[];

@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { BaseModel } from "./baseModel";
 import { Candidato } from "./CandidatoModel";
 
@@ -6,7 +6,4 @@ import { Candidato } from "./CandidatoModel";
 export class Habilidade extends BaseModel {
     @Column()
     descricao: string;
-
-    @OneToMany(() => Candidato, candidato => candidato.id)
-    candidato: Candidato[];
 }

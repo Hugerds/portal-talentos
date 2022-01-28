@@ -11,6 +11,6 @@ export class Instituicao extends BaseModel {
     @Column()
     descricao: string;
 
-    @OneToMany(() => Formacao, formacao => formacao.instituicoes)
+    @OneToMany(() => Formacao, formacao => formacao.instituicao)
     formacoes: Formacao[];
 }
