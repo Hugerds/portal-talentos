@@ -9,11 +9,17 @@ export class Endereco extends BaseModel {
     @Column()
     cep: string;
     
-    @Column()
+    @Column({nullable: true })
     complemento: string;
     
     @Column()
     bairro: string;
+
+    @Column()
+    logradouro: string;
+
+    @Column()
+    numero: number;
     
     @ManyToOne(() => Cidade, cidade => cidade.enderecos)
     @JoinTable()

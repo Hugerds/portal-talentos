@@ -76,6 +76,7 @@ export class CandidatoController {
 	}
 
 	async createCandidate(request: Request, response: Response) : Promise<void> {
+		console.log(request.body);
 		const candidatoService = new CandidatoService();
 		const novoCandidato : Partial<Candidato> = {
             name: request.body.name,

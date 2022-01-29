@@ -8,7 +8,7 @@ export class Curso extends BaseModel {
     @Column()
     nome: string;
 
-    @Column()
+    @Column({nullable: true})
     descricao: string;
 
     @OneToMany(() => Formacao, formacao => formacao.curso)

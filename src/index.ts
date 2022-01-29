@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import express from "express";
+import cors from 'cors';
 import { createConnection } from "typeorm";
 import { Formacao } from "./app/models/FormacaoModel";
 import { Endereco } from "./app/models/EnderecoModel";
@@ -18,6 +19,10 @@ async function Application() {
     });
 
     const app = express();
+    const options: cors.CorsOptions = {
+    origin: "*"
+    };
+    app.use(cors(options));
 	app.use(express.json());
     app.use(candidadoRouter);
     app.use(cursoRouter);
