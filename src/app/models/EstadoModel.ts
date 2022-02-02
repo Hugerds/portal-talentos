@@ -8,7 +8,7 @@ import { Endereco } from "./EnderecoModel";
 export class Estado extends BaseModel {
     @Column()
     ufSigla: string;
-    
+
     @Column()
     ufTexto: string;
 
@@ -17,8 +17,4 @@ export class Estado extends BaseModel {
 
     @OneToMany(() => Cidade, cidade => cidade.estado)
     cidades: Cidade[];
-
-    // @ManyToMany(() => Cidade)
-    // @JoinTable()
-    // cidades: Cidade[];
 }
