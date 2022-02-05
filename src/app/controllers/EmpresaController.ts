@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import { Candidato } from "../models/CandidatoModel";
+import { Empresa } from "../models/EmpresaModel";
 import { CandidatoService } from "../services/CandidatoService";
+import { EmpresaService } from "../services/EmpresaService";
 
-export class CandidatoController {
+export class EmpresaController {
 	// async getCandidato(request: Request, response: Response): Promise<void> {
 	// 	// const candidatoService = new CandidatoService();
 	// 	// const newCandidato : Partial<Candidato> = {
@@ -19,21 +21,21 @@ export class CandidatoController {
 	// }
 
 	async getCandidatos(request: Request, response: Response): Promise<void> {
-		const candidatoService = new CandidatoService();
+		// const candidatoService = new CandidatoService();
 
-		const res = await candidatoService.findAllCandidates();
-		response.json(
-			res,
-		);
+		// const res = await candidatoService.findAllCandidates();
+		// response.json(
+		// 	res,
+		// );
 	}
 
 	async getCandidatesList(request: Request, response: Response): Promise<void> {
-		const candidatoService = new CandidatoService();
+		// const candidatoService = new CandidatoService();
 
-		const res = await candidatoService.findCandidatesList();
-		response.json(
-			res,
-		);
+		// const res = await candidatoService.findCandidatesList();
+		// response.json(
+		// 	res,
+		// );
 	}
 
 	async inactiveCandidatoById(request: Request, response: Response): Promise<void> {
@@ -75,10 +77,10 @@ export class CandidatoController {
 		// );
 	}
 
-	async createCandidate(request: Request, response: Response): Promise<void> {
-		const candidatoService = new CandidatoService();
-		const novoCandidato: Partial<Candidato> = request.body;
-		const res = await candidatoService.createCandidate(novoCandidato);
+	async createCompany(request: Request, response: Response): Promise<void> {
+		const candidatoService = new EmpresaService();
+		const novaEmpresa: Partial<Empresa> = request.body;
+		const res = await candidatoService.createCompany(novaEmpresa);
 		response.json(
 			res
 		);

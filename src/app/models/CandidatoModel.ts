@@ -27,6 +27,7 @@ export class Candidato extends BaseModel {
     @Column({
         type: "enum",
         enum: SituacaoCandidato,
+        default: SituacaoCandidato.pendente
     })
     situacao_candidato: SituacaoCandidato;
 
