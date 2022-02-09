@@ -1,8 +1,9 @@
-import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, ManyToOne, OneToMany } from "typeorm";
 import { UsuarioTipo } from "../enums/UsuarioTipoEnum";
 import { BaseModel } from "./baseModel";
 import { Candidato } from "./CandidatoModel";
 import { Empresa } from "./EmpresaModel";
+import bcrypt from 'bcryptjs'
 
 
 @Entity()
@@ -39,4 +40,10 @@ export class Usuario extends BaseModel {
 
     @OneToMany(() => Candidato, candidato => candidato.created_user)
     candidatos: Candidato[];
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    hashPasswords() {
+        this.password = bcrypt.hashSync(this.password, 8);
+    }
 }
