@@ -36,12 +36,11 @@ export class UsuarioController {
 			telefone: createUser.telefone,
 			email: createUser.email,
 			usuario_tipo: createUser.usuario_tipo,
+			token: jwt.sign({ id: user.nome }, process.env.TOKEN_JWT, { expiresIn: '1d' })
 		};
-		const token = jwt.sign({ id: user.nome }, process.env.TOKEN_JWT, { expiresIn: '1d' });
-		response.json({
-			usuario: res,
-			token
-		});
+		response.json(
+			res
+		);
 	}
 
 	async updateUser(request: Request, response: Response): Promise<void> {

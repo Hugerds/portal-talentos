@@ -22,7 +22,7 @@ export class Empresa extends BaseModel {
     endereco: Endereco;
 
     @ManyToOne(() => Usuario, usuario => usuario.empresas)
-    responsible_user: Usuario;
+    responsibleUser: Usuario;
 
     @OneToMany(() => Candidato, candidato => candidato.empresa)
     candidatos: Candidato[];

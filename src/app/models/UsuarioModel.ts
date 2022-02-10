@@ -27,7 +27,7 @@ export class Usuario extends BaseModel {
     telefone: string;
 
     @Column()
-    data_nascimento: Date;
+    dataNascimento: Date;
 
     @Column({
         type: "enum",
@@ -35,10 +35,10 @@ export class Usuario extends BaseModel {
     })
     usuario_tipo: UsuarioTipo;
 
-    @OneToMany(() => Empresa, empresa => empresa.responsible_user)
+    @OneToMany(() => Empresa, empresa => empresa.responsibleUser)
     empresas: Empresa[];
 
-    @OneToMany(() => Candidato, candidato => candidato.created_user)
+    @OneToMany(() => Candidato, candidato => candidato.createdUser)
     candidatos: Candidato[];
 
     @BeforeInsert()

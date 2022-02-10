@@ -7,5 +7,6 @@ export interface IUsuario {
     cpf: string,
     email: string,
     telefone: string,
+    token: string,
     usuario_tipo: UsuarioTipo,
 }

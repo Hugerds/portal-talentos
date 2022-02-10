@@ -6,9 +6,9 @@ import { Instituicao } from "./InstituicaoModel";
 
 @Entity()
 export class Formacao extends BaseModel {
-    @Column({type: "date"})
-    conclusao: Date;
-    
+    @Column({ type: "date" })
+    conclusao: string;
+
     @ManyToOne(() => Curso, curso => curso.formacoes)
     @JoinTable()
     curso: Curso;

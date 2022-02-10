@@ -16,7 +16,7 @@ export class Candidato extends BaseModel {
     name: string;
 
     @Column({ type: "date" })
-    data_nascimento: Date;
+    dataNascimento: Date;
 
     @Column()
     email: string;
@@ -29,7 +29,7 @@ export class Candidato extends BaseModel {
         enum: SituacaoCandidato,
         default: SituacaoCandidato.pendente
     })
-    situacao_candidato: SituacaoCandidato;
+    situacaoCandidato: SituacaoCandidato;
 
     @ManyToOne(() => Endereco, endereco => endereco.candidato)
     endereco: Endereco;
@@ -45,8 +45,8 @@ export class Candidato extends BaseModel {
     empresa: Empresa;
 
     @ManyToOne(() => Usuario, usuario => usuario.candidatos)
-    created_user: Usuario;
+    createdUser: Usuario;
 
     @ManyToOne(() => Usuario, usuario => usuario.candidatos)
-    responsible_user: Usuario;
+    responsibleUser: Usuario;
 }

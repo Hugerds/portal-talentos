@@ -25,6 +25,7 @@ export class CandidatoService {
     async createCandidate(candidateProps: Partial<Candidato>): Promise<Candidato> {
         try {
             const newDate = new Date();
+            // candidateProps.data_nascimento = new Date(candidateProps.data_nascimento.toLocaleDateString('pt-BR'));
             const lastCandidate = await this.candidateRepository.findLastCandidate();
             //Soma no código do candidato para cada cadastro
             candidateProps.code = !lastCandidate ? 0 : lastCandidate.code + 1;
