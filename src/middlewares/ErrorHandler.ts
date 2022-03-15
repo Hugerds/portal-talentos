@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { ErrorBase } from "../app/models/ErrorBase";
 
 //Middleware para erro, sempre que há uam exceção personalizada ele passa por aqui para definir o response com o status e model
-export function errorHandler(error: ErrorBase, request: Request, response: Response, next: NextFunction): void {
+export function ErrorHandler(error: ErrorBase, request: Request, response: Response, next: NextFunction): void {
 
     let status = 500;
     let body = {

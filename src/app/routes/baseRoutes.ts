@@ -5,7 +5,7 @@ import { empresaRouter } from "./EmpresaRoutes";
 import { usuarioRouter } from "./UsuarioRoutes";
 
 export class BaseRoutes {
-    BaseRoutes(app: Express) {
+    constructor(app: Express) {
         app.use(candidadoRouter);
         app.use(cursoRouter);
         app.use(empresaRouter);

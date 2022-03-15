@@ -23,4 +23,9 @@ export class UsuarioRepository extends Repository<Usuario>{
             return false;
         }
     }
+
+    async findUserByEmail(email: string): Promise<Usuario> {
+        const user = await this.findOne({ where: { email } });
+        return user;
+    }
 }

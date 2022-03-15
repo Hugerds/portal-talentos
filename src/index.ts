@@ -13,6 +13,7 @@ import { cursoRouter } from "./app/routes/CursoRoutes";
 import { empresaRouter } from "./app/routes/EmpresaRoutes";
 import { usuarioRouter } from "./app/routes/UsuarioRoutes";
 import { BaseRoutes } from "./app/routes/baseRoutes";
+import { ErrorHandler } from "./middlewares/ErrorHandler";
 
 const port = process.env.PORT || 3001;
 Application();
@@ -34,7 +35,8 @@ async function Application() {
     };
     app.use(cors(options));
     app.use(express.json());
-    new BaseRoutes().BaseRoutes(app);
+    new BaseRoutes(app);
+    app.use(ErrorHandler);
     app.listen(port, function () {
         console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
     });

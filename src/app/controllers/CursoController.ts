@@ -1,20 +1,18 @@
 import { Request, Response } from "express";
-import { Candidato } from "../models/CandidatoModel";
 import { Curso } from "../models/CursoModel";
-import { CandidatoService } from "../services/CandidatoService";
 import { CursoService } from "../services/CursoService";
 
 export class CursoController {
 
-    async inactiveCursoById(request: Request, response: Response) : Promise<void> {
-		
+	async inactiveCursoById(request: Request, response: Response): Promise<void> {
+
 	}
 
-    async updateCurso(request: Request, response: Response) : Promise<void> {
+	async updateCurso(request: Request, response: Response): Promise<void> {
 		const cursoService = new CursoService();
-		const novoCurso : Partial<Curso> = {
-            nome: request.body.nome,
-            descricao: request.body.descricao,
+		const novoCurso: Partial<Curso> = {
+			nome: request.body.nome,
+			descricao: request.body.descricao,
 		};
 		const res = await cursoService.updateCurso(novoCurso);
 		response.json(
@@ -22,11 +20,11 @@ export class CursoController {
 		);
 	}
 
-	async createCurso(request: Request, response: Response) : Promise<void> {
+	async createCurso(request: Request, response: Response): Promise<void> {
 		const cursoService = new CursoService();
-		const novoCurso : Partial<Curso> = {
-            nome: request.body.nome,
-            descricao: request.body.descricao,
+		const novoCurso: Partial<Curso> = {
+			nome: request.body.nome,
+			descricao: request.body.descricao,
 		};
 		const res = await cursoService.createCurso(novoCurso);
 		response.json(

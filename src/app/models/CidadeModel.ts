@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { BaseModel } from "./baseModel";
+import { BaseModel } from "./BaseModel";
 import { Candidato } from "./CandidatoModel";
 import { Endereco } from "./EnderecoModel";
 import { Estado } from "./EstadoModel";

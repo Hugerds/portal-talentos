@@ -8,5 +8,5 @@ export interface IUsuario {
     email: string,
     telefone: string,
     token: string,
-    usuario_tipo: UsuarioTipo,
+    usuario_tipo: UsuarioTipo
 }

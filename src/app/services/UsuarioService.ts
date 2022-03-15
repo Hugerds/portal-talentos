@@ -1,33 +1,23 @@
 import { getCustomRepository } from "typeorm";
-import { Candidato } from "../models/CandidatoModel";
-import { Cidade } from "../models/CidadeModel";
-import { Estado } from "../models/EstadoModel";
-import { CidadeRepository } from "../repositories/CidadeRepository";
-import { EnderecoRepository } from "../repositories/EnderecoRepository";
-import { EstadoRepository } from "../repositories/EstadoRepository";
-import { CandidatoRepository } from "../repositories/CandidatoRepository";
-import { HabilidadeRepository } from "../repositories/HabilidadeRepository";
-import { CursoRepository } from "../repositories/CursoRepository";
-import { InstituicaoRepository } from "../repositories/InstituicaoRepository";
-import { Curso } from "../models/CursoModel";
-import { Instituicao } from "../models/InstituicaoModel";
-import { FormacaoRepository } from "../repositories/FormacaoRepository";
-import { Empresa } from "../models/EmpresaModel";
-import { EmpresaRepository } from "../repositories/EmpresaRepository";
 import { Usuario } from "../models/UsuarioModel";
 import { UsuarioRepository } from "../repositories/UsuarioRepository";
+import { BadRequestException } from '../../errors/BadRequestException';
 
 export class UsuarioService {
-    userRepository = getCustomRepository(UsuarioRepository);
+    private _userRepository: UsuarioRepository;
+    constructor() {
+        this._userRepository = getCustomRepository(UsuarioRepository);
+    }
 
     async createUser(userProps: Partial<Usuario>): Promise<Usuario> {
-        try {
-            const newDate = new Date();
-            const user = await this.userRepository.createUser(userProps);
-            return user;
-        } catch (error) {
-            console.log(error);
+        const newDate = new Date();
+        console.log(userProps.email);
+        const findUserByEmail = await this._userRepository.findUserByEmail(userProps.email);
+        if (findUserByEmail) {
+            throw new BadRequestException("Email já cadastrado");
         }
+        const user = await this._userRepository.createUser(userProps);
+        return user;
     }
 
     async updateUser(userProps: Partial<Usuario>): Promise<Usuario> {
@@ -42,7 +32,7 @@ export class UsuarioService {
 
     async deleteUser(userId: string): Promise<boolean> {
         try {
-            const retorno = await this.userRepository.deleteUser(userId);
+            const retorno = await this._userRepository.deleteUser(userId);
             return retorno;
         } catch (error) {
             console.log(error);

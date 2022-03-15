@@ -1,7 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { Endereco } from "./EnderecoModel";
-import { Formacao } from "./FormacaoModel";
-import { Habilidade } from "./HabilidadeModel";
+import { Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 export abstract class BaseModel {
     @PrimaryGeneratedColumn("uuid")
@@ -9,11 +6,11 @@ export abstract class BaseModel {
 
     @Column({ type: 'date' })
     @CreateDateColumn()
-    createDate: Date;
+    create_date: Date;
 
     @Column({ type: 'date' })
     @UpdateDateColumn()
-    updateDate: Date;
+    update_date: Date;
 
     @Column({ default: false })
     excluido: boolean;

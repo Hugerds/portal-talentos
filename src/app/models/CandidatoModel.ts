@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { SituacaoCandidato } from "../enums/SituacaoCandidatoEnum";
-import { BaseModel } from "./baseModel";
+import { BaseModel } from "./BaseModel";
 import { Empresa } from "./EmpresaModel";
 import { Endereco } from "./EnderecoModel";
 import { Formacao } from "./FormacaoModel";
@@ -16,7 +16,7 @@ export class Candidato extends BaseModel {
     name: string;
 
     @Column({ type: "date" })
-    dataNascimento: Date;
+    data_nascimento: Date;
 
     @Column()
     email: string;

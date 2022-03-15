@@ -1,6 +1,6 @@
 import { BeforeInsert, BeforeUpdate, Column, Entity, ManyToOne, OneToMany } from "typeorm";
 import { UsuarioTipo } from "../enums/UsuarioTipoEnum";
-import { BaseModel } from "./baseModel";
+import { BaseModel } from "./BaseModel";
 import { Candidato } from "./CandidatoModel";
 import { Empresa } from "./EmpresaModel";
 import bcrypt from 'bcryptjs'
@@ -27,7 +27,7 @@ export class Usuario extends BaseModel {
     telefone: string;
 
     @Column()
-    dataNascimento: Date;
+    data_nascimento: Date;
 
     @Column({
         type: "enum",
