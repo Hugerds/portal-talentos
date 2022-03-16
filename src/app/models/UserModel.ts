@@ -36,7 +36,7 @@ export class User extends BaseModel {
     typeUser: TypeUser;
 
     @OneToMany(() => Company, company => company.responsibleUser)
-    companys: Company[];
+    companies: Company[];
 
     @OneToMany(() => Candidate, candidate => candidate.createdUser)
     candidates: Candidate[];

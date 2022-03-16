@@ -1,11 +1,12 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { CandidateSituation } from "../enums/CandidateSituationEnum";
+import { PhaseProccessEnum } from "../enums/PhaseProccessEnum";
 import { BaseModel } from "./BaseModel";
 import { Company } from "./CompanyModel";
 import { Address } from "./AddressModel";
 import { Formation } from "./FormationModel";
 import { Skill } from "./SkillModel";
 import { User } from "./UserModel";
+import { Proccess } from "./ProccessModel";
 
 @Entity()
 export class Candidate extends BaseModel {
@@ -24,12 +25,12 @@ export class Candidate extends BaseModel {
     @Column()
     tellphone: string;
 
-    @Column({
-        type: "enum",
-        enum: CandidateSituation,
-        default: CandidateSituation.pendente
-    })
-    candidateSituation: CandidateSituation;
+    // @Column({
+    //     type: "enum",
+    //     enum: PhaseProccessEnum,
+    //     default: PhaseProccessEnum.PHASE_PROCCESS_PENDING
+    // })
+    // phaseProccess: PhaseProccessEnum;
 
     @ManyToOne(() => Address, address => address.candidate)
     address: Address;
@@ -49,4 +50,8 @@ export class Candidate extends BaseModel {
 
     @ManyToOne(() => User, user => user.candidates)
     responsibleUser: User;
+
+    @ManyToMany(() => Proccess)
+    @JoinTable()
+    proccess: Proccess[];
 }
