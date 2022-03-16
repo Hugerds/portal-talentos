@@ -1,4 +1,4 @@
-import { ErrorBase } from "../app/models/ErrorBase";
+import { ErrorBase } from "../app/models/ErrorBaseModel";
 
 export class UnauthorizedException extends ErrorBase {
 

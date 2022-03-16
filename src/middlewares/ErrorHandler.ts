@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { ErrorBase } from "../app/models/ErrorBase";
+import { ErrorBase } from "../app/models/ErrorBaseModel";
 
 //Middleware para erro, sempre que há uam exceção personalizada ele passa por aqui para definir o response com o status e model
 export function ErrorHandler(error: ErrorBase, request: Request, response: Response, next: NextFunction): void {

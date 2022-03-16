@@ -1,14 +1,14 @@
 import { Express } from "express-serve-static-core";
-import { candidadoRouter } from "./CandidadoRoutes";
-import { cursoRouter } from "./CursoRoutes";
-import { empresaRouter } from "./EmpresaRoutes";
-import { usuarioRouter } from "./UsuarioRoutes";
+import { candidateRouter } from "./CandidateRoutes";
+import { courseRouter } from "./CourseRoutes";
+import { companyRouter } from "./CompanyRoutes";
+import { usuarioRouter } from "./UserRoutes";
 
 export class BaseRoutes {
     constructor(app: Express) {
-        app.use(candidadoRouter);
-        app.use(cursoRouter);
-        app.use(empresaRouter);
+        app.use(candidateRouter);
+        app.use(courseRouter);
+        app.use(companyRouter);
         app.use(usuarioRouter);
     }
 }

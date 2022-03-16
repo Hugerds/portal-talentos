@@ -2,16 +2,16 @@ import "reflect-metadata";
 import express from "express";
 import cors from 'cors';
 import { createConnection } from "typeorm";
-import { Formacao } from "./app/models/FormacaoModel";
-import { Endereco } from "./app/models/EnderecoModel";
-import { Habilidade } from "./app/models/HabilidadeModel";
-import { Candidato } from "./app/models/CandidatoModel";
-import { Curso } from "./app/models/CursoModel";
-import { Instituicao } from "./app/models/InstituicaoModel";
-import { candidadoRouter } from "./app/routes/CandidadoRoutes";
-import { cursoRouter } from "./app/routes/CursoRoutes";
-import { empresaRouter } from "./app/routes/EmpresaRoutes";
-import { usuarioRouter } from "./app/routes/UsuarioRoutes";
+import { Formation } from "./app/models/FormationModel";
+import { Address } from "./app/models/AddressModel";
+import { Skill } from "./app/models/SkillModel";
+import { Candidate } from "./app/models/CandidateModel";
+import { Course } from "./app/models/CourseModel";
+import { Institution } from "./app/models/InstitutionModel";
+import { candidateRouter } from "./app/routes/CandidateRoutes";
+import { courseRouter } from "./app/routes/CourseRoutes";
+import { companyRouter } from "./app/routes/CompanyRoutes";
+import { usuarioRouter } from "./app/routes/UserRoutes";
 import { BaseRoutes } from "./app/routes/baseRoutes";
 import { ErrorHandler } from "./middlewares/ErrorHandler";
 
@@ -19,10 +19,10 @@ const port = process.env.PORT || 3001;
 Application();
 async function Application() {
     await createConnection().then(async connection => {
-        const repository = connection.getRepository(Curso);
-        const course = new Curso();
-        course.nome = "Curso de NodeJS";
-        course.descricao = "Teste";
+        const repository = connection.getRepository(Course);
+        const course = new Course();
+        course.name = "Course de NodeJS";
+        course.description = "Teste";
         const newCourse = repository.create(course);
         await repository.save(newCourse);
 

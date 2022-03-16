@@ -6,12 +6,12 @@ export abstract class BaseModel {
 
     @Column({ type: 'date' })
     @CreateDateColumn()
-    create_date: Date;
+    createDate: Date;
 
     @Column({ type: 'date' })
     @UpdateDateColumn()
-    update_date: Date;
+    updateDate: Date;
 
     @Column({ default: false })
-    excluido: boolean;
+    excluded: boolean;
 }
