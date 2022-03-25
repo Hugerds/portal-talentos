@@ -7,7 +7,7 @@ import { Institution } from "./InstitutionModel";
 @Entity()
 export class Formation extends BaseModel {
     @Column({ type: "date" })
-    conclusao: string;
+    conclusion: string;
 
     @ManyToOne(() => Course, course => course.formations)
     @JoinTable()

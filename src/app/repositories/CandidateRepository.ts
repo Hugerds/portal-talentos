@@ -38,4 +38,15 @@ export class CandidateRepository extends Repository<Candidate>{
             return false;
         }
     }
+
+    async findCandidateById(id: string): Promise<boolean> {
+        try {
+            const candidate = await this.findOne({ where: { id: id } });
+            if (!candidate)
+                return false;
+            return true;
+        } catch {
+            return false;
+        }
+    }
 }

@@ -4,7 +4,7 @@ export interface IUser {
     id: string,
     login: string,
     name: string,
-    cpf: string,
+    documment: string,
     email: string,
     tellphone: string,
     token: string,

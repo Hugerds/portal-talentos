@@ -10,11 +10,13 @@ export class UserService {
     }
 
     async createUser(userProps: Partial<User>): Promise<User> {
-
-        userProps.birthDate = new Date(userProps.birthDate);
-        const findUserByEmail = await this._userRepository.findUserByEmail(userProps.email);
+        if (userProps.email == null || userProps.birthDate == null || userProps.typeUser == null) throw new BadRequestException("Campos obrigatórios não preenchidos");
+        const birthDateString = userProps.birthDate;
+        userProps.birthDate = new Date(birthDateString);
+        const email: string = userProps.email;
+        const findUserByEmail = await this._userRepository.findUserByEmail(email);
         if (findUserByEmail) {
-            throw new BadRequestException("Email já cadastrado");
+            throw new BadRequestException("E-mail já cadastrado");
         }
         const user = await this._userRepository.createUser(userProps);
         return user;
@@ -27,6 +29,7 @@ export class UserService {
             return user;
         } catch (error) {
             console.log(error);
+            throw new BadRequestException("Erro ao criar usuário");
         }
     }
 
@@ -36,6 +39,7 @@ export class UserService {
             return retorno;
         } catch (error) {
             console.log(error);
+            return false;
         }
     }
 }

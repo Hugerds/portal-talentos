@@ -21,7 +21,7 @@ export class User extends BaseModel {
     email: string;
 
     @Column()
-    cpf: string;
+    documment: string;
 
     @Column()
     tellphone: string;

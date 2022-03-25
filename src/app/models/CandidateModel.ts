@@ -7,6 +7,7 @@ import { Formation } from "./FormationModel";
 import { Skill } from "./SkillModel";
 import { User } from "./UserModel";
 import { Proccess } from "./ProccessModel";
+import { CandidateProccess } from "./CandidateProccessModel";
 
 @Entity()
 export class Candidate extends BaseModel {
@@ -51,7 +52,9 @@ export class Candidate extends BaseModel {
     @ManyToOne(() => User, user => user.candidates)
     responsibleUser: User;
 
-    @ManyToMany(() => Proccess)
-    @JoinTable()
-    proccess: Proccess[];
+    @OneToOne(() => CandidateProccess, candidateProccess => candidateProccess.candidate) // specify inverse side as a second parameter
+    candidateProccess: CandidateProccess;
+    // @ManyToMany(() => Proccess)
+    // @JoinTable()
+    // proccess: Proccess[];
 }

@@ -24,19 +24,18 @@ export class UserController {
 
 	async createUser(request: Request, response: Response): Promise<void> {
 		const usuarioService = new UserService();
-
 		const user: Partial<User> = request.body;
-
 		const createUser = await usuarioService.createUser(user);
+		const codigoToken: string = process.env.TOKEN_JWT!;
 		const res: IUser = {
 			name: createUser.name,
 			id: createUser.id,
 			login: createUser.login,
-			cpf: createUser.cpf,
+			documment: createUser.documment,
 			tellphone: createUser.tellphone,
 			email: createUser.email,
 			typeUser: createUser.typeUser,
-			token: jwt.sign({ id: user.name }, process.env.TOKEN_JWT, { expiresIn: '1d' })
+			token: jwt.sign({ id: user.name }, codigoToken, { expiresIn: '1d' })
 		};
 		response.json(
 			res
