@@ -1,4 +1,6 @@
 import { EntityRepository, Repository } from "typeorm";
+import { BadRequestException } from "../../errors/BadRequestException";
+import { NotFoundException } from "../../errors/NotFoundException";
 import { Candidate } from "../models/CandidateModel";
 
 @EntityRepository(Candidate)
@@ -17,7 +19,7 @@ export class CandidateRepository extends Repository<Candidate>{
 
     async findLastCandidate(): Promise<Candidate> {
         const candidate = await this.findOne({ order: { createDate: "DESC" } });
-        return candidate;
+        return candidate!;
     }
 
     async findCandidatesList(): Promise<Candidate[]> {
@@ -39,14 +41,8 @@ export class CandidateRepository extends Repository<Candidate>{
         }
     }
 
-    async findCandidateById(id: string): Promise<boolean> {
-        try {
-            const candidate = await this.findOne({ where: { id: id } });
-            if (!candidate)
-                return false;
-            return true;
-        } catch {
-            return false;
-        }
+    async findCandidateById(id: string): Promise<Candidate> {
+        const candidate = await this.findOne({ where: { id: id } });
+        return candidate!;
     }
 }

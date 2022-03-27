@@ -8,9 +8,16 @@ import { Skill } from "./SkillModel";
 import { User } from "./UserModel";
 import { Proccess } from "./ProccessModel";
 import { CandidateProccess } from "./CandidateProccessModel";
+import { ErrorResult } from "../../errors/ErrorResult";
 
 @Entity()
 export class Candidate extends BaseModel {
+
+    constructor(props: Partial<Candidate>) {
+        super();
+        Object.assign(this, props);
+    }
+
     @Column()
     code: number;
 
@@ -54,7 +61,19 @@ export class Candidate extends BaseModel {
 
     @OneToOne(() => CandidateProccess, candidateProccess => candidateProccess.candidate) // specify inverse side as a second parameter
     candidateProccess: CandidateProccess;
-    // @ManyToMany(() => Proccess)
-    // @JoinTable()
-    // proccess: Proccess[];
+
+    validateForInsert(): ErrorResult {
+        const result = new ErrorResult();
+
+        if (!this.name || !this.birthDate || !this.address || !this.tellphone || !this.formation) {
+            result.addError("Preencha todos os campos obrigatórios");
+            result.setHttpErrorCode(400);
+        }
+        else if (this.name.trim() == "" || this.tellphone.trim() == "") {
+            result.addError("Campos obrigatórios não podem ser vazios");
+            result.setHttpErrorCode(400);
+        }
+
+        return result;
+    }
 }
