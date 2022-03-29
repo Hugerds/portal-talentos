@@ -13,11 +13,11 @@ export class CandidateProccess extends BaseModel {
     })
     phaseProccess: PhaseProccessEnum;
 
-    @OneToOne(() => Candidate)
+    @ManyToOne(() => Candidate)
     @JoinTable()
     candidate: Candidate;
 
-    @OneToOne(() => Proccess)
+    @ManyToOne(() => Proccess)
     @JoinTable()
     proccess: Proccess;
 }

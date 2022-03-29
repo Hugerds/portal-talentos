@@ -12,6 +12,7 @@ import { InstitutionRepository } from "../repositories/InstitutionRepository";
 import { Course } from "../models/CourseModel";
 import { Institution } from "../models/InstitutionModel";
 import { FormationRepository } from "../repositories/FormationRepository";
+import { BadRequestException } from "../../errors/BadRequestException";
 
 export class CourseService {
     candidateRepository = getCustomRepository(CandidateRepository);
@@ -29,6 +30,7 @@ export class CourseService {
             return course;
         } catch (error) {
             console.log(error);
+            throw new BadRequestException("Não foi possível criar o curso");
         }
     }
 
@@ -39,6 +41,7 @@ export class CourseService {
             return course;
         } catch (error) {
             console.log(error);
+            throw new BadRequestException("Não foi possível atualizar o curso");
         }
     }
 }

@@ -35,18 +35,19 @@ export class ProccessService {
             if (!candidate)
                 throw new BadRequestException("Candidato não encontrado");
             const company = await this._companyRepository.findCompanyById(proccessProps.companyId!);
-            console.log(company)
             if (!company)
                 throw new BadRequestException("Empresa não encontrada");
             proccess.company = company;
+
             const candidateProccess: CandidateProccess = new CandidateProccess();
             candidateProccess.candidate = candidate;
             candidateProccess.proccess = proccess;
             candidateProccess.phaseProccess = proccess.phaseProccess;
-            await this._candidateProccessRepository.createCandidateProccess(candidateProccess);
             const saveProccess = await this._proccessRepository.createProccess(proccess);
+            await this._candidateProccessRepository.createCandidateProccess(candidateProccess);
             return saveProccess;
         } catch (error) {
+            console.log(error);
             throw new BadRequestException("Não foi possível criar o processo");
         }
     }

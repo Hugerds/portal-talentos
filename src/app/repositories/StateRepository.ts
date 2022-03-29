@@ -20,6 +20,6 @@ export class StateRepository extends Repository<State>{
 
     async findbyUfSigla(stateAbbreviation: string): Promise<State> {
         const state = await this.findOne({ where: { stateAbbreviation: stateAbbreviation } });
-        return state;
+        return state!;
     }
 }

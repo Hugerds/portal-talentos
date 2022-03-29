@@ -19,6 +19,6 @@ export class CourseRepository extends Repository<Course>{
 
     async findByName(name: string): Promise<Course> {
         const course = await this.findOne({ where: { name: name } });
-        return course;
+        return course!;
     }
 }

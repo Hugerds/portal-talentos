@@ -69,11 +69,12 @@ export class CandidateService {
             candidateProps.address = address;
             //Itera nas skills enviadas e procura, caso não encontre cria uma nova
             for (const element in candidateProps.skills) {
-                if (!await this._skillRepository.findByDescription(candidateProps.skills[element].description))
-                    candidateProps.skills[element] = await this._skillRepository.createSkill(candidateProps.skills[element]);
+                const index: number = element as unknown as number;
+                if (!await this._skillRepository.findByDescription(candidateProps.skills[index].description))
+                    candidateProps.skills[index] = await this._skillRepository.createSkill(candidateProps.skills[index]);
             }
             //Buscar o course pela descrição e caso não exista cria um novo relacionado ao candidato
-            let course = await this._courseRepository.findByName(candidateProps.formation.course.name);
+            let course = await this._courseRepository.findByName(candidateProps.formation!.course.name);
             if (!course) {
                 course = new Course();
                 course.name = candidateProps.formation!.course.name;

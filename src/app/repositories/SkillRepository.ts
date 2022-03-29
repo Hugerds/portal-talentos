@@ -18,6 +18,6 @@ export class SkillRepository extends Repository<Skill>{
 
     async findByDescription(description: string): Promise<Skill> {
         const skill = await this.findOne({ where: { description: description } });
-        return skill;
+        return skill!;
     }
 }

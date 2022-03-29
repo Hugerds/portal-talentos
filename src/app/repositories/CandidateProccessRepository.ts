@@ -6,9 +6,9 @@ import { Proccess } from "../models/ProccessModel";
 @EntityRepository(CandidateProccess)
 export class CandidateProccessRepository extends Repository<CandidateProccess> {
     async createCandidateProccess(candidateProccess: Partial<CandidateProccess>): Promise<CandidateProccess> {
-        const saveProccessProccess = this.create(candidateProccess);
-        await this.save(saveProccessProccess);
+        const saveCandidateProccess = this.create(candidateProccess);
+        await this.save(saveCandidateProccess);
 
-        return saveProccessProccess;
+        return saveCandidateProccess;
     }
 }

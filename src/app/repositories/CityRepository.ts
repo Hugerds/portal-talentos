@@ -22,6 +22,6 @@ export class CityRepository extends Repository<City>{
     async findByName(nameCity: string): Promise<City> {
         const city = await this.findOne({ where: { name: nameCity } });
 
-        return city;
+        return city!;
     }
 }
