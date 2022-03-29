@@ -18,15 +18,15 @@ const routeConfig: RouterFactoryDTO[] = [
 	// 	controller: usuarioController.getUser
 	// },
 	{
-		method: "post",
+		method: "post-jwt",
 		path: `${path}`,
 		controller: proccessController.createProccess
 	},
-	// {
-	// 	method: "put",
-	// 	path: `${path}`,
-	// 	controller: usuarioController.updateUser
-	// },
+	{
+		method: "put-jwt",
+		path: `${path}`,
+		controller: proccessController.advancePhase
+	},
 	// {
 	// 	method: "delete",
 	// 	path: `${path}`,

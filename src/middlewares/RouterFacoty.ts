@@ -10,11 +10,20 @@ export function RouterFactory(routeConfig: RouterFactoryDTO[], router: Router): 
 			case "get":
 				router.get(route.path, controller);
 				break;
+			case "get-jwt":
+				router.get(route.path, authMiddleware, controller);
+				break;
 			case "post":
 				router.post(route.path, controller);
 				break;
+			case "post-jwt":
+				router.post(route.path, authMiddleware, controller);
+				break;
 			case "put":
 				router.put(route.path, controller);
+				break;
+			case "put-jwt":
+				router.put(route.path, authMiddleware, controller);
 				break;
 			case "delete":
 				router.delete(route.path, controller);
@@ -24,7 +33,7 @@ export function RouterFactory(routeConfig: RouterFactoryDTO[], router: Router): 
 }
 
 export interface RouterFactoryDTO {
-	method: "get" | "post" | "put" | "delete"
+	method: "get" | "post" | "put" | "delete" | "post-jwt" | "get-jwt" | "put-jwt";
 	path: string,
 	controller: Application | any
 }
