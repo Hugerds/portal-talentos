@@ -5,12 +5,13 @@ export interface ErrorBaseDTO {
 
 //Model base de erro, todas as personalizadas chamam esse construtor para atribuir a message e status
 export class ErrorBase {
-    message = {}
+    message = ""
     status = 400
     isBackendThrowableError = true
 
     constructor({ message, status }: ErrorBaseDTO) {
-        this.message = message;
+        const stringMessage: string = message as string
+        this.message = stringMessage;
         this.status = status || this.status;
     }
 }

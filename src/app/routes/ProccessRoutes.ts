@@ -23,6 +23,11 @@ const routeConfig: RouterFactoryDTO[] = [
 		controller: proccessController.createProccess
 	},
 	{
+		method: "post-jwt",
+		path: `${path}/addCandidate`,
+		controller: proccessController.addCandidateOnProccess
+	},
+	{
 		method: "put-jwt",
 		path: `${path}`,
 		controller: proccessController.advancePhase

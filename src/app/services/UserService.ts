@@ -18,13 +18,13 @@ export class UserService {
         if (findUserByEmail) {
             throw new BadRequestException("E-mail já cadastrado");
         }
+        userProps.complete_registration = false;
         const user = await this._userRepository.createUser(userProps);
         return user;
     }
 
     async updateUser(userProps: Partial<User>): Promise<User> {
         try {
-            const newDate = new Date();
             const user: User = userProps as User;
             return user;
         } catch (error) {

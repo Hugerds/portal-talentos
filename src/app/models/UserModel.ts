@@ -29,6 +29,9 @@ export class User extends BaseModel {
     @Column()
     birthDate: Date;
 
+    @Column()
+    complete_registration: boolean;
+
     @Column({
         type: "enum",
         enum: TypeUser,

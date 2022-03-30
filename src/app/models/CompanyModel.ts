@@ -32,8 +32,8 @@ export class Company extends BaseModel {
     @ManyToOne(() => User, user => user.companies)
     responsibleUser: User;
 
-    @OneToMany(() => Candidate, candidate => candidate.company)
-    candidates: Candidate[];
+    // @OneToMany(() => Candidate, candidate => candidate.company)
+    // candidates: Candidate[];
 
     @OneToMany(() => Proccess, proccess => proccess.company)
     proccess: Proccess[];

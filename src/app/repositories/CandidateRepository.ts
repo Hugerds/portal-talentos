@@ -41,7 +41,7 @@ export class CandidateRepository extends Repository<Candidate>{
         }
     }
 
-    async findCandidateById(id: string): Promise<Candidate> {
+    async findById(id: string): Promise<Candidate> {
         const candidate = await this.findOne({ where: { id: id } });
         return candidate!;
     }

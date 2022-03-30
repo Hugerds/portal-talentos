@@ -50,9 +50,6 @@ export class Candidate extends BaseModel {
     @ManyToOne(() => Formation, formation => formation.candidates, { cascade: true })
     formation: Formation;
 
-    @ManyToOne(() => Company, company => company.candidates)
-    company: Company;
-
     @ManyToOne(() => User, user => user.candidates)
     createdUser: User;
 
@@ -73,7 +70,6 @@ export class Candidate extends BaseModel {
             result.addError("Campos obrigatórios não podem ser vazios");
             result.setHttpErrorCode(400);
         }
-
         return result;
     }
 }

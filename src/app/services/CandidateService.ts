@@ -43,6 +43,8 @@ export class CandidateService {
             const lastCandidate = await this._candidateRepository.findLastCandidate();
             //Soma no código do candidato para cada cadastro
             candidateProps.code = !lastCandidate ? 0 : lastCandidate.code + 1;
+            //
+            const birthDate = new Date(candidateProps.birthDate!).toLocaleDateString('pt-BR');
             //Buscar o state pela sigla e caso não exista criar um novo
             let state = await this._stateRepository.findbyUfSigla(candidateProps.address!.state.stateAbbreviation);
             if (!state) {

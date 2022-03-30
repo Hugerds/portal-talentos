@@ -6,5 +6,9 @@ module.exports = {
 	"password": process.env.TYPEORM_PASSWORD,
 	"database": process.env.TYPEORM_USERNAME,
 	synchronize: true,
-	"entities": ["src/app/models/*.ts"]
+	"entities": ["src/app/models/*{.js,.ts}"],
+	"migrations": ["src/database/migration/*{.js,.ts}"],
+	"cli": {
+		"migrationsDir": "src/database/migration/"
+	}
 };

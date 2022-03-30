@@ -10,6 +10,10 @@ import { CandidateProccess } from "../models/CandidateProccessModel";
 import { v4 as uuidv4 } from 'uuid';
 import { CandidateProccessRepository } from "../repositories/CandidateProccessRepository";
 import { UpdateProccessViewModel } from "../viewModels/UpdateProccessViewModel";
+import { AddCandidateOnProccess } from "../viewModels/AddCandidateOnProccessViewModel";
+import { NotFoundException } from "../../errors/NotFoundException";
+import { Candidate } from "../models/CandidateModel";
+import { ErrorBase, ErrorBaseDTO } from "../models/ErrorBaseModel";
 export class ProccessService {
     private _proccessRepository: ProccessRepository;
     private _candidateRepository: CandidateRepository;
@@ -41,7 +45,7 @@ export class ProccessService {
             proccess.company = company;
             const saveProccess = await this._proccessRepository.createProccess(proccess);
             if (!temCandidato) {
-                const candidate = await this._candidateRepository.findCandidateById(proccessProps.candidateId!);
+                const candidate = await this._candidateRepository.findById(proccessProps.candidateId!);
                 if (!candidate)
                     throw new BadRequestException("Candidato não encontrado");
                 candidateProccess.candidate = candidate;
@@ -80,6 +84,27 @@ export class ProccessService {
         } catch (error) {
             console.log(error);
             throw new BadRequestException("Não foi possível avançar o processo");
+        }
+    }
+
+    async addCandidateOnProccess(addCandidateOnProccessProps: Partial<AddCandidateOnProccess>): Promise<CandidateProccess> {
+        try {
+            const createProccessViewModel = new AddCandidateOnProccess(addCandidateOnProccessProps);
+            const validationResult = createProccessViewModel.validateForInsert();
+            validationResult.throwIfInvalid();
+            const proccess = await this._proccessRepository.findById(addCandidateOnProccessProps.proccessId!);
+            if (!proccess)
+                throw new NotFoundException("Processo não encontrado");
+            const candidate = await this._candidateRepository.findById(addCandidateOnProccessProps.candidateId!);
+            if (!candidate)
+                throw new NotFoundException("Candidato não encontrado");
+            const candidateProccess: CandidateProccess = new CandidateProccess();
+            candidateProccess.candidate = candidate;
+            candidateProccess.proccess = proccess;
+            return await this._candidateProccessRepository.createCandidateProccess(candidateProccess);
+        } catch (error) {
+            console.log(error);
+            throw new BadRequestException("Não foi possível incluir o candidato ao processo");
         }
     }
 }
